@@ -36,31 +36,40 @@ const createManyPeople = (arrayOfPeople, done) => {
 
 const findPeopleByName = (personName, done) => {
     Person.find({name: personName}, (err, person) => {
-        if(err) console.err();
+        if(err) return console.err();
             done(null, person);
     });
 };
 
 const findOneByFood = (food, done) => {
     Person.findOne({favoriteFoods: food}, (err, person) => {
-        if(err) console.err();
+        if(err) return console.err();
             done(null, person);
     });
 };
 
 const findPersonById = (personId, done) => {
     Person.findById(personId, (err, person) => {
-        if(err) console.err();
+        if(err) return console.err();
             done(null, person);
     });
 };
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-  Person.update(personId, favoriteFoods.push(foodToAdd), (err, data) => {
-      if(err) console.err();
-          done(null, data);
-  });
+  //First find the person by id
+  Person.update(personId, (err, person) => {
+      //If there is an error, return that
+      if(err) return console.err();
+
+      //Add the new food to the foods array
+      person.favoriteFoods.push(foodToAdd);
+
+      //Save the new person with a callback function
+      person.save((err, updatedPerson) => {
+        if(err) return console.err();
+            done(null, updatedPerson);
+      });
 };
 
 const findAndUpdate = (personName, done) => {
