@@ -16,12 +16,22 @@ const createAndSavePerson = (done) => {
   let person = new Person({name: 'Vernon',age: 33,favoriteFoods: ['Japanese', 'Korean', 'Thai']});
   person.save((err, data) => {
     if(err) return console.err();
-      done(null, data);
+        done(null, data);
   });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  let people = Model.create(
+                                [
+                                    {name: 'Vernon',age: 33,favoriteFoods: ['Japanese', 'Korean', 'Thai']},
+                                    {name: 'Claudette',age: 70,favoriteFoods: ['Jamaican', 'Italian']},
+                                    {name: 'Maria',age: 51,favoriteFoods: ['British', 'Alkaline']}
+                                ]
+                            );
+  people.save((err, data) => {
+    if(err) return console.err();
+        done(null, data;
+  });
 };
 
 const findPeopleByName = (personName, done) => {
