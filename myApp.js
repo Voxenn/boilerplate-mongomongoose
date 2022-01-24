@@ -30,7 +30,7 @@ const createManyPeople = (arrayOfPeople, done) => {
                             );
   people.save((err, data) => {
     if(err) return console.err();
-        done(null, data;
+        done(null, data);
   });
 };
 
