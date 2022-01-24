@@ -58,7 +58,7 @@ const findPersonById = (personId, done) => {
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
   //First find the person by id
-  Person.update(personId, (err, person) => {
+  Person.findById(personId, (err, person) => {
       //If there is an error, return that
       if(err) return console.err();
 
