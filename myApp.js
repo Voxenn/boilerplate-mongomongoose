@@ -20,17 +20,17 @@ const createAndSavePerson = (done) => {
   });
 };
 
+let arrayOfPeople = [
+                        {name: 'Vernon',age: 33,favoriteFoods: ['Japanese', 'Korean', 'Thai']},
+                        {name: 'Claudette',age: 70,favoriteFoods: ['Jamaican', 'Italian']},
+                        {name: 'Maria',age: 51,favoriteFoods: ['British', 'Alkaline']}
+                    ];
+
 const createManyPeople = (arrayOfPeople, done) => {
-  let people = Person.create(
-                                [
-                                    {name: 'Vernon',age: 33,favoriteFoods: ['Japanese', 'Korean', 'Thai']},
-                                    {name: 'Claudette',age: 70,favoriteFoods: ['Jamaican', 'Italian']},
-                                    {name: 'Maria',age: 51,favoriteFoods: ['British', 'Alkaline']}
-                                ]
-                            );
-  people.save((err, data) => {
-    if(err) return console.err();
-        done(null, data);
+
+    Person.create(arrayOfPeople, (err, people) => {
+        if(err) return console.err();
+        done(null, people);
   });
 };
 
