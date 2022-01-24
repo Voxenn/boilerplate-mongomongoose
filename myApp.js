@@ -70,7 +70,7 @@ const findEditThenSave = (personId, done) => {
         if(err) return console.err();
             done(null, updatedPerson);
       });
-    )};
+    });
 };
 
 const findAndUpdate = (personName, done) => {
